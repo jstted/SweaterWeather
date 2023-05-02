@@ -40,11 +40,14 @@ extension MainViewController: MainViewProtocol {
             if let temperature = weather.main?.temp {
                 self.temperatureLabel.text = "\(Int(temperature))˚"
             }
+            if let city = weather.name {
+                self.cityLabel.text = city
+            }
         }
     }
     
     func failure() {
-        print("no internet connection")
+        print("VIEW FAILURE no internet connection")
     }
 }
 
@@ -56,7 +59,7 @@ extension MainViewController {
         setupTopButton(searchButton, image: "magnifyingglass.circle.fill")
         setupSearchTextField()
         setupLabel(temperatureLabel, fontSize: 74, text: "-˚")
-        setupLabel(cityLabel, fontSize: 23, text: "")
+        setupLabel(cityLabel, fontSize: 27, text: "")
         setupWeatherGliphImageView()
     }
     
@@ -137,7 +140,7 @@ extension MainViewController {
             
             //MARK: temperatureLabel
             temperatureLabel.topAnchor.constraint(equalTo: searchTextField.bottomAnchor,
-                                                  constant: 70),
+                                                  constant: 90),
             temperatureLabel.leadingAnchor.constraint(equalTo: view.centerXAnchor,
                                                       constant: 4),
             
@@ -149,7 +152,7 @@ extension MainViewController {
             weatherGlyphImageView.widthAnchor.constraint(equalTo: weatherGlyphImageView.heightAnchor),
             
             //MARK: cityLabel
-            cityLabel.bottomAnchor.constraint(equalTo: temperatureLabel.topAnchor, constant: -4),
+            cityLabel.bottomAnchor.constraint(equalTo: temperatureLabel.topAnchor, constant: -8),
             cityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
