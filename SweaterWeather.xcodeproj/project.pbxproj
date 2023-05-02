@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C806464B2A01575F006CFDF2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806464A2A01575F006CFDF2 /* NetworkService.swift */; };
 		C8229BB729FFE4440051A64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BB629FFE4440051A64B /* AppDelegate.swift */; };
 		C8229BB929FFE4440051A64B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BB829FFE4440051A64B /* SceneDelegate.swift */; };
 		C8229BBB29FFE4440051A64B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BBA29FFE4440051A64B /* MainViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C806464A2A01575F006CFDF2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C8229BB329FFE4440051A64B /* SweaterWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweaterWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8229BB629FFE4440051A64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		C8229BB829FFE4440051A64B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C80646492A015748006CFDF2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C806464A2A01575F006CFDF2 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		C8229BAA29FFE4440051A64B = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		C8229BB529FFE4440051A64B /* SweaterWeather */ = {
 			isa = PBXGroup;
 			children = (
+				C80646492A015748006CFDF2 /* Network */,
 				C8229BCB29FFE4E60051A64B /* Application */,
 				C8229BCC29FFE4F70051A64B /* MainModule */,
 				C8229BD129FFF80F0051A64B /* Model */,
@@ -181,6 +192,7 @@
 				C8229BB929FFE4440051A64B /* SceneDelegate.swift in Sources */,
 				C8229BCE29FFF0BB0051A64B /* MainPresenter.swift in Sources */,
 				C8229BD329FFF8A50051A64B /* Builder.swift in Sources */,
+				C806464B2A01575F006CFDF2 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,8 +337,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -354,8 +368,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
