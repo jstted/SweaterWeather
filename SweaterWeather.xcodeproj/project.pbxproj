@@ -16,6 +16,7 @@
 		C8229BCE29FFF0BB0051A64B /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BCD29FFF0BB0051A64B /* MainPresenter.swift */; };
 		C8229BD029FFF6B40051A64B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BCF29FFF6B40051A64B /* Weather.swift */; };
 		C8229BD329FFF8A50051A64B /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BD229FFF8A50051A64B /* Builder.swift */; };
+		C8A80E502A0173E400E06B6D /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A80E4F2A0173E400E06B6D /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C8229BCD29FFF0BB0051A64B /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		C8229BCF29FFF6B40051A64B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C8229BD229FFF8A50051A64B /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		C8A80E4F2A0173E400E06B6D /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				C8229BBF29FFE4450051A64B /* Assets.xcassets */,
 				C8229BC129FFE4450051A64B /* LaunchScreen.storyboard */,
 				C8229BC429FFE4450051A64B /* Info.plist */,
+				C8A80E4F2A0173E400E06B6D /* APIKey.swift */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				C8229BD029FFF6B40051A64B /* Weather.swift in Sources */,
 				C8229BBB29FFE4440051A64B /* MainViewController.swift in Sources */,
+				C8A80E502A0173E400E06B6D /* APIKey.swift in Sources */,
 				C8229BB729FFE4440051A64B /* AppDelegate.swift in Sources */,
 				C8229BB929FFE4440051A64B /* SceneDelegate.swift in Sources */,
 				C8229BCE29FFF0BB0051A64B /* MainPresenter.swift in Sources */,
