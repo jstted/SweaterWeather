@@ -31,17 +31,33 @@ final class MainViewController: UIViewController {
 
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
+    func succes(_ weather: Weather) {
+        
+        DispatchQueue.main.async {
+            self.weatherGlyphImageView.image = UIImage(
+                systemName: self.presenter?.setIconToGlyph() ?? "antenna.radiowaves.left.and.right.slash"
+            )
+            if let temperature = weather.main?.temp {
+                self.temperatureLabel.text = "\(Int(temperature))˚"
+            }
+        }
+    }
     
+    func failure() {
+        print("no internet connection")
+    }
 }
 
 //MARK: - Setup UI
 extension MainViewController {
     private func setViews() {
-        view.backgroundColor = .systemPink
         setupBackground()
         setupTopButton(locationButton, image: "location.circle.fill")
         setupTopButton(searchButton, image: "magnifyingglass.circle.fill")
         setupSearchTextField()
+        setupLabel(temperatureLabel, fontSize: 74, text: "-˚")
+        setupLabel(cityLabel, fontSize: 23, text: "")
+        setupWeatherGliphImageView()
     }
     
     private func setupBackground() {
@@ -60,6 +76,19 @@ extension MainViewController {
         searchTextField.borderStyle = .roundedRect
         searchTextField.backgroundColor = UIColor(named: "backgroundColor")
         searchTextField.textColor = .tintColor
+    }
+    
+    private func setupLabel(_ label: UILabel, fontSize: CGFloat, text: String) {
+        label.textColor = .tintColor
+        label.font = .systemFont(ofSize: fontSize)
+        label.text = text
+        label.textAlignment = .center
+    }
+    
+    private func setupWeatherGliphImageView() {//  cloud.sun.fill fill to other 
+        weatherGlyphImageView.image = UIImage(systemName: "antenna.radiowaves.left.and.right.slash")
+        weatherGlyphImageView.tintColor = .tintColor
+        weatherGlyphImageView.contentMode = .scaleAspectFit
     }
 }
 
@@ -104,7 +133,24 @@ extension MainViewController {
             searchTextField.leadingAnchor.constraint(equalTo: locationButton.trailingAnchor,
                                                      constant: 8),
             searchTextField.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor,
-                                                      constant: -8)
+                                                      constant: -8),
+            
+            //MARK: temperatureLabel
+            temperatureLabel.topAnchor.constraint(equalTo: searchTextField.bottomAnchor,
+                                                  constant: 70),
+            temperatureLabel.leadingAnchor.constraint(equalTo: view.centerXAnchor,
+                                                      constant: 4),
+            
+            //MARK: weatherGlyphImageView
+            weatherGlyphImageView.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
+            weatherGlyphImageView.trailingAnchor.constraint(equalTo: view.centerXAnchor,
+                                                            constant: -4),
+            weatherGlyphImageView.heightAnchor.constraint(equalTo: temperatureLabel.heightAnchor),
+            weatherGlyphImageView.widthAnchor.constraint(equalTo: weatherGlyphImageView.heightAnchor),
+            
+            //MARK: cityLabel
+            cityLabel.bottomAnchor.constraint(equalTo: temperatureLabel.topAnchor, constant: -4),
+            cityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }

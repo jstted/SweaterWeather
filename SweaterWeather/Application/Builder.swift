@@ -14,7 +14,8 @@ protocol BuilderProtocol {
 final class Builder: BuilderProtocol {
     static func buildMainModule() -> UIViewController {
         let view = MainViewController()
-        let presenter = MainPresenter(view: view)
+        let networkService = NetworkService()
+        let presenter = MainPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         return view
     }
