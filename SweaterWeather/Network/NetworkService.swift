@@ -8,18 +8,20 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getCurrentWeather(parameters: [String: Any]?, complition: @escaping(Result<Weather?,Error>) -> Void)
+    func getCurrentWeather(queryItems: [URLQueryItem]?,
+                           complition: @escaping(Result<Weather?,Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
-    func getCurrentWeather(parameters: [String: Any]?, complition: @escaping (Result<Weather?, Error>) -> Void) {
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=\(APIKey.get)&units=metric"
-        guard let url = URL(string: urlString) else { return }
+    func getCurrentWeather(queryItems: [URLQueryItem]?,
+                           complition: @escaping (Result<Weather?, Error>) -> Void) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.openweathermap.org"
+        urlComponents.path = "/data/2.5/weather"
+        urlComponents.queryItems = queryItems
+        guard let url = urlComponents.url else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        if let parameters {
-            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
-        }
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error {
                 complition(.failure(error))

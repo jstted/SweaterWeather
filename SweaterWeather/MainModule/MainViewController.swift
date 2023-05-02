@@ -32,22 +32,19 @@ final class MainViewController: UIViewController {
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func succes(_ weather: Weather) {
-        
-        DispatchQueue.main.async {
-            self.weatherGlyphImageView.image = UIImage(
-                systemName: self.presenter?.setIconToGlyph() ?? "antenna.radiowaves.left.and.right.slash"
-            )
-            if let temperature = weather.main?.temp {
-                self.temperatureLabel.text = "\(Int(temperature))˚"
-            }
-            if let city = weather.name {
-                self.cityLabel.text = city
-            }
+        self.weatherGlyphImageView.image = UIImage(
+            systemName: self.presenter?.setIconToGlyph() ?? "antenna.radiowaves.left.and.right.slash"
+        )
+        if let temperature = weather.main?.temp {
+            self.temperatureLabel.text = "\(Int(temperature))˚"
+        }
+        if let city = weather.name {
+            self.cityLabel.text = city
         }
     }
     
     func failure() {
-        print("VIEW FAILURE no internet connection")
+        print("VIEW FAILURE probably no internet connection")
     }
 }
 

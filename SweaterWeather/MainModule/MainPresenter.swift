@@ -30,17 +30,23 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func getWeather() {
-        networkService.getCurrentWeather(parameters: nil) { [weak self] result in
+        networkService.getCurrentWeather(queryItems: [
+            URLQueryItem(name: "q", value: "Moscow"),
+            URLQueryItem(name: "appid", value: APIKey.get.rawValue),
+            URLQueryItem(name: "units", value: "metric")
+        ]) { [weak self] result in
             guard let self else { return }
-            switch result {
-            case .success(let weather):
-                guard let weather else { return }
-                self.weather = weather
-                print(weather)
-                self.view?.succes(weather)
-            case .failure(let error):
-                print(error.localizedDescription)
-                self.view?.failure()
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let weather):
+                    guard let weather else { return }
+                    self.weather = weather
+                    print(weather)
+                    self.view?.succes(weather)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.view?.failure()
+                }
             }
         }
     }
