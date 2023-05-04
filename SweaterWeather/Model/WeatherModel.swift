@@ -1,5 +1,5 @@
 //
-//  Weather.swift
+//  WeatherModel.swift
 //  SweaterWeather
 //
 //  Created by Mikhail Tedeev on 01.05.2023.
@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Weather
 struct WeatherModel: Decodable {
     let coord: Coord?
-    let weather: [WeatherElement]?
+    let weather: [Weather]?
     let base: String?
     let main: Main?
     let visibility: Int?
@@ -54,8 +54,8 @@ extension WeatherModel {
         let sunset: Int?
     }
     
-    // MARK: - WeatherElement
-    struct WeatherElement: Decodable {
+    // MARK: - Weather
+    struct Weather: Decodable {
         let id: Int?
         let main: String?
         let description: String?
