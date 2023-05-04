@@ -9,19 +9,21 @@ import Foundation
 
 protocol NetworkServiceProtocol {
     func getCurrentWeather(queryItems: [URLQueryItem]?,
-                           complition: @escaping(Result<Weather?,Error>) -> Void)
+                           complition: @escaping(Result<WeatherModel?,Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
+    let decoder = JSONDecoder()
+    
     func getCurrentWeather(queryItems: [URLQueryItem]?,
-                           complition: @escaping (Result<Weather?, Error>) -> Void) {
+                           complition: @escaping (Result<WeatherModel?, Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.openweathermap.org"
         urlComponents.path = "/data/2.5/weather"
         urlComponents.queryItems = queryItems
         guard let url = urlComponents.url else { return }
-        var request = URLRequest(url: url)
+        let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error {
                 complition(.failure(error))
@@ -29,7 +31,7 @@ class NetworkService: NetworkServiceProtocol {
             }
             do {
                 guard let data else { return }
-                let weather = try JSONDecoder().decode(Weather.self, from: data)
+                let weather = try self.decoder.decode(WeatherModel.self, from: data)
                 complition(.success(weather))
             } catch {
                 complition(.failure(error))
