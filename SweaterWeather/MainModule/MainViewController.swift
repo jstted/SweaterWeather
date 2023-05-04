@@ -52,12 +52,16 @@ extension MainViewController: MainViewProtocol {
 extension MainViewController {
     private func setViews() {
         setupBackground()
-        setupTopButton(locationButton, image: "location.circle.fill")
-        setupTopButton(searchButton, image: "magnifyingglass.circle.fill")
         setupSearchTextField()
         setupLabel(temperatureLabel, fontSize: 74, text: "-˚")
         setupLabel(cityLabel, fontSize: 27, text: "")
         setupWeatherGliphImageView()
+        setupTopButton(locationButton,
+                       image: "location.circle.fill",
+                       action: #selector(locationButtonTarget))
+        setupTopButton(searchButton,
+                       image: "magnifyingglass.circle.fill",
+                       action: #selector(searchButtonTarget))
     }
     
     private func setupBackground() {
@@ -66,9 +70,10 @@ extension MainViewController {
         backgroundImageView.contentMode = .scaleAspectFill
     }
     
-    private func setupTopButton(_ button: UIButton, image: String) {
+    private func setupTopButton(_ button: UIButton, image: String, action: Selector) {
         button.tintColor = .tintColor
         button.setImage(UIImage(systemName: image), for: .normal)
+        button.addTarget(self, action: action, for: .touchUpInside)
     }
     
     private func setupSearchTextField() {
@@ -76,6 +81,8 @@ extension MainViewController {
         searchTextField.borderStyle = .roundedRect
         searchTextField.backgroundColor = UIColor(named: "backgroundColor")
         searchTextField.textColor = .tintColor
+        searchTextField.returnKeyType = .search
+        searchTextField.delegate = self
     }
     
     private func setupLabel(_ label: UILabel, fontSize: CGFloat, text: String) {
@@ -85,10 +92,37 @@ extension MainViewController {
         label.textAlignment = .center
     }
     
-    private func setupWeatherGliphImageView() {//  cloud.sun.fill fill to other 
+    private func setupWeatherGliphImageView() {
         weatherGlyphImageView.image = UIImage(systemName: "antenna.radiowaves.left.and.right.slash")
         weatherGlyphImageView.tintColor = .tintColor
         weatherGlyphImageView.contentMode = .scaleAspectFit
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension MainViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        guard let cityName = textField.text else { return false }
+        presenter?.getWeather(city: cityName)
+        return true
+    }
+}
+
+//MARK: - Target Actions
+extension MainViewController {
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc private func searchButtonTarget(_ sender: UIButton) {
+        guard let cityName = searchTextField.text else { return }
+        presenter?.getWeather(city: cityName)
+        dismissKeyboard()
+    }
+    
+    @objc private func locationButtonTarget(_ sender: UIButton) {
+        
     }
 }
 

@@ -15,7 +15,7 @@ protocol MainViewProtocol: AnyObject {
 protocol MainPresenterProtocol: AnyObject {
     var weather: Weather? { get set }
     init (view: MainViewProtocol, networkService: NetworkServiceProtocol)
-    func getWeather()
+    func getWeather(city: String)
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -26,12 +26,12 @@ final class MainPresenter: MainPresenterProtocol {
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
         self.networkService = networkService
-        getWeather()
+        getWeather(city: "Moscow")
     }
     
-    func getWeather() {
+    func getWeather(city: String) {
         networkService.getCurrentWeather(queryItems: [
-            URLQueryItem(name: "q", value: "Moscow"),
+            URLQueryItem(name: "q", value: city),
             URLQueryItem(name: "appid", value: APIKey.get.rawValue),
             URLQueryItem(name: "units", value: "metric")
         ]) { [weak self] result in
