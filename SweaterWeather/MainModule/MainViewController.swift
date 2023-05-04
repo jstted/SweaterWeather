@@ -26,6 +26,9 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setLayouts()
+        presenter?.locationManager.locationManager.requestWhenInUseAuthorization()
+        presenter?.locationManager.locationManager.requestLocation()
+        presenter?.locationManager.getLocation()
     }
 }
 
@@ -108,7 +111,8 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         guard let cityName = textField.text else { return false }
-        presenter?.getWeather(city: cityName)
+        presenter?.getWeatherBy(city: cityName)
+        searchTextField.text = ""
         return true
     }
 }
@@ -117,12 +121,13 @@ extension MainViewController: UITextFieldDelegate {
 extension MainViewController {
     @objc private func searchButtonTarget(_ sender: UIButton) {
         guard let cityName = searchTextField.text else { return }
-        presenter?.getWeather(city: cityName)
+        presenter?.getWeatherBy(city: cityName)
         view.endEditing(true)
+        searchTextField.text = ""
     }
     
     @objc private func locationButtonTarget(_ sender: UIButton) {
-        
+        presenter?.getWeatherByCurrentLocation()
     }
 }
 

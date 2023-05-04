@@ -16,6 +16,7 @@
 		C8229BCE29FFF0BB0051A64B /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BCD29FFF0BB0051A64B /* MainPresenter.swift */; };
 		C8229BD029FFF6B40051A64B /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BCF29FFF6B40051A64B /* WeatherModel.swift */; };
 		C8229BD329FFF8A50051A64B /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8229BD229FFF8A50051A64B /* Builder.swift */; };
+		C87B39002A03F2A700E542B0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B38FF2A03F2A700E542B0 /* LocationManager.swift */; };
 		C8A80E522A0175B500E06B6D /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A80E512A0175B500E06B6D /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		C8229BCD29FFF0BB0051A64B /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		C8229BCF29FFF6B40051A64B /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		C8229BD229FFF8A50051A64B /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		C87B38FF2A03F2A700E542B0 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C8A80E512A0175B500E06B6D /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,10 +74,11 @@
 		C8229BB529FFE4440051A64B /* SweaterWeather */ = {
 			isa = PBXGroup;
 			children = (
-				C80646492A015748006CFDF2 /* Network */,
+				C87B38FE2A03F19500E542B0 /* Location */,
 				C8229BCB29FFE4E60051A64B /* Application */,
 				C8229BCC29FFE4F70051A64B /* MainModule */,
 				C8229BD129FFF80F0051A64B /* Model */,
+				C80646492A015748006CFDF2 /* Network */,
 				C8229BCA29FFE4AF0051A64B /* Resourses */,
 			);
 			path = SweaterWeather;
@@ -117,6 +120,14 @@
 				C8229BCF29FFF6B40051A64B /* WeatherModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C87B38FE2A03F19500E542B0 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				C87B38FF2A03F2A700E542B0 /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +208,7 @@
 				C8229BCE29FFF0BB0051A64B /* MainPresenter.swift in Sources */,
 				C8229BD329FFF8A50051A64B /* Builder.swift in Sources */,
 				C806464B2A01575F006CFDF2 /* NetworkService.swift in Sources */,
+				C87B39002A03F2A700E542B0 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
