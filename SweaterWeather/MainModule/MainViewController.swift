@@ -31,7 +31,7 @@ final class MainViewController: UIViewController {
 
 //MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    func succes(_ weather: Weather) {
+    func succes(_ weather: WeatherModel) {
         self.weatherGlyphImageView.image = UIImage(
             systemName: self.presenter?.setIconToGlyph() ?? "antenna.radiowaves.left.and.right.slash"
         )
@@ -43,8 +43,12 @@ extension MainViewController: MainViewProtocol {
         }
     }
     
-    func failure() {
+    func failure(_ error: Error) {
         print("VIEW FAILURE probably no internet connection")
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let okAlertButton = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okAlertButton)
+        present(alert, animated: true)
     }
 }
 
@@ -102,7 +106,7 @@ extension MainViewController {
 //MARK: - UITextFieldDelegate
 extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        dismissKeyboard()
+        view.endEditing(true)
         guard let cityName = textField.text else { return false }
         presenter?.getWeather(city: cityName)
         return true
@@ -111,14 +115,10 @@ extension MainViewController: UITextFieldDelegate {
 
 //MARK: - Target Actions
 extension MainViewController {
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     @objc private func searchButtonTarget(_ sender: UIButton) {
         guard let cityName = searchTextField.text else { return }
         presenter?.getWeather(city: cityName)
-        dismissKeyboard()
+        view.endEditing(true)
     }
     
     @objc private func locationButtonTarget(_ sender: UIButton) {

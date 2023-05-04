@@ -8,12 +8,12 @@
 import Foundation
 
 protocol MainViewProtocol: AnyObject {
-    func succes(_ weather: Weather)
-    func failure()
+    func succes(_ weather: WeatherModel)
+    func failure(_ error: Error)
 }
 
 protocol MainPresenterProtocol: AnyObject {
-    var weather: Weather? { get set }
+    var weather: WeatherModel? { get set }
     init (view: MainViewProtocol, networkService: NetworkServiceProtocol)
     func getWeather(city: String)
 }
@@ -21,7 +21,7 @@ protocol MainPresenterProtocol: AnyObject {
 final class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
     let networkService: NetworkServiceProtocol!
-    var weather: Weather?
+    var weather: WeatherModel?
     
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -45,7 +45,7 @@ final class MainPresenter: MainPresenterProtocol {
                     self.view?.succes(weather)
                 case .failure(let error):
                     print(error.localizedDescription)
-                    self.view?.failure()
+                    self.view?.failure(error)
                 }
             }
         }
