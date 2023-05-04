@@ -19,6 +19,7 @@ final class Builder: BuilderProtocol {
         let presenter = MainPresenter(view: view,
                                       networkService: networkService,
                                       locationManager: locationManager)
+        locationManager.mainModule = presenter
         view.presenter = presenter
         return view
     }

@@ -26,9 +26,6 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         setLayouts()
-        presenter?.locationManager.locationManager.requestWhenInUseAuthorization()
-        presenter?.locationManager.locationManager.requestLocation()
-        presenter?.locationManager.getLocation()
     }
 }
 
@@ -127,7 +124,7 @@ extension MainViewController {
     }
     
     @objc private func locationButtonTarget(_ sender: UIButton) {
-        presenter?.getWeatherByCurrentLocation()
+        presenter?.locationManager.locationManager.requestLocation()
     }
 }
 

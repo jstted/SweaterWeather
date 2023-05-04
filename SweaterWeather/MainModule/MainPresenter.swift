@@ -19,14 +19,14 @@ protocol MainPresenterProtocol: AnyObject {
           networkService: NetworkServiceProtocol,
           locationManager: LocationManager)
     func getWeatherBy(city: String)
-    func getWeatherByCurrentLocation()
+    func getWeatherByCurrentLocation(lat: CLLocationDegrees, lon: CLLocationDegrees)
 }
 
 final class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
     var weather: WeatherModel?
     let networkService: NetworkServiceProtocol!
-    let locationManager: LocationManager!
+    let locationManager: LocationManagerProtocol!
     
     required init(view: MainViewProtocol,
                   networkService: NetworkServiceProtocol,
@@ -34,8 +34,8 @@ final class MainPresenter: MainPresenterProtocol {
         self.view = view
         self.networkService = networkService
         self.locationManager = locationManager
-//        getWeatherBy(city: "Moscow")
-        getWeatherByCurrentLocation()
+        self.locationManager.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.locationManager.requestLocation()
     }
     
     func getWeatherBy(city: String) {
@@ -59,10 +59,10 @@ final class MainPresenter: MainPresenterProtocol {
         }
     }
     
-    func getWeatherByCurrentLocation() {
+    func getWeatherByCurrentLocation(lat: CLLocationDegrees, lon: CLLocationDegrees) {
         networkService.getCurrentWeather(queryItems: [
-            URLQueryItem(name: "lat", value: "\(locationManager.coordinate.latitude)"),
-            URLQueryItem(name: "lon", value: "\(locationManager.coordinate.longitude)"),
+            URLQueryItem(name: "lat", value: "\(lat)"),
+            URLQueryItem(name: "lon", value: "\(lon)"),
             URLQueryItem(name: "appid", value: APIKey.get.rawValue),
             URLQueryItem(name: "units", value: "metric")
         ]) { [weak self] result in
