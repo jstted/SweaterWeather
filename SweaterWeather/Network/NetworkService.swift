@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol {
                            complition: @escaping(Result<WeatherModel?,Error>) -> Void)
 }
 
-class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
     let decoder = JSONDecoder()
     
     func getCurrentWeather(queryItems: [URLQueryItem]?,

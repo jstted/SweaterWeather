@@ -50,7 +50,6 @@ final class MainPresenter: MainPresenterProtocol {
                 case .success(let weather):
                     guard let weather else { return }
                     self.weather = weather
-                    print(weather)
                     self.view?.succes(weather)
                 case .failure(let error):
                     self.view?.failure(error)
@@ -72,7 +71,6 @@ final class MainPresenter: MainPresenterProtocol {
                 case .success(let weather):
                     guard let weather else { return }
                     self.weather = weather
-                    print(weather)
                     self.view?.succes(weather)
                 case .failure(let error):
                     self.view?.failure(error)

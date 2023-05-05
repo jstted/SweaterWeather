@@ -13,7 +13,7 @@ protocol LocationManagerProtocol {
     func getLocation() -> CLLocationCoordinate2D
 }
 
-class LocationManager: NSObject, LocationManagerProtocol {
+final class LocationManager: NSObject, LocationManagerProtocol {
     var locationManager = CLLocationManager()
     var coordinate = CLLocationCoordinate2D()
     weak var mainModule: MainPresenterProtocol?
@@ -36,7 +36,6 @@ class LocationManager: NSObject, LocationManagerProtocol {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last?.coordinate else { return }
-        print(currentLocation)
         mainModule?.getWeatherByCurrentLocation(lat: currentLocation.latitude,
                                                 lon: currentLocation.longitude)
     }

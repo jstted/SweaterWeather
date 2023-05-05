@@ -33,7 +33,8 @@ final class MainViewController: UIViewController {
 extension MainViewController: MainViewProtocol {
     func succes(_ weather: WeatherModel) {
         self.weatherGlyphImageView.image = UIImage(
-            systemName: self.presenter?.setIconToGlyph() ?? "antenna.radiowaves.left.and.right.slash"
+            systemName:
+                self.presenter?.setIconToGlyph() ?? "antenna.radiowaves.left.and.right.slash"
         )
         if let temperature = weather.main?.temp {
             self.temperatureLabel.text = "\(Int(temperature))˚"
@@ -44,7 +45,6 @@ extension MainViewController: MainViewProtocol {
     }
     
     func failure(_ error: Error) {
-        print("VIEW FAILURE probably no internet connection")
         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let okAlertButton = UIAlertAction(title: "Ok", style: .default)
         alert.addAction(okAlertButton)
@@ -117,9 +117,9 @@ extension MainViewController: UITextFieldDelegate {
 //MARK: - Target Actions
 extension MainViewController {
     @objc private func searchButtonTarget(_ sender: UIButton) {
+        view.endEditing(true)
         guard let cityName = searchTextField.text else { return }
         presenter?.getWeatherBy(city: cityName)
-        view.endEditing(true)
         searchTextField.text = ""
     }
     
